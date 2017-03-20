@@ -1,0 +1,42 @@
+name: chinese-cal
+version: '0.1'
+summary: Chinese calendar
+description: |
+  This is chinese-calendar snap
+
+grade: stable 
+confinement: strict
+
+apps:
+  chinese-cal:
+    command: bin/desktop-launch $SNAP/usr/bin/chinese-calendar
+    plugs: [network,home,unity7,opengl,browser-support]
+
+parts:
+  app:
+    plugin: qmake
+    qt-version: qt4
+    source: ./src
+    stage-packages:
+      - overlay-scrollbar-gtk2
+      - libgail-dev
+      - libatk-bridge2.0-0
+      - libatk-adaptor
+      - unity-gtk2-module:amd64
+      - libqt4-sql-sqlite
+      - libcanberra-gtk-module:amd64
+      - ttf-wqy-microhei
+      - fcitx-frontend-qt5
+    after: [desktop-qt4]
+
+  db:
+    plugin: dump
+    source: ./src
+    organize:
+      'skin/': .local/share/chinese-calendar/skin/
+    stage:
+      - .local/*
+      - KylinLunar.db
+    prime:
+      - KylinLunar.db
+      - .local/*

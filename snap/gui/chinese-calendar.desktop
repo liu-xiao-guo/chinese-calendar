@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Chinese Calendar
+GenericName=Chinese Calendar
+Comment=Chinese calendar
+Keywords=Chinese,calendar
+Exec=chinese-calendar
+Icon=${SNAP}/meta/gui/chinesecalendar.svg
+Terminal=false
+StartupNotify=true
